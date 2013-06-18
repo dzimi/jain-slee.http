@@ -82,8 +82,15 @@ public class HttpServletResourceAdaptor implements ResourceAdaptor,
 	 * the ra entity name, which matches the servlet name
 	 */
 	private String name;
+        
+        private static final String NAME_CONFIG_PROPERTY = "name";
+        
+        /**
+         * tells ra entity to lock request for specified time
+         */
+        private long timeout;
 
-	private static final String NAME_CONFIG_PROPERTY = "name";
+	private static final String TIMEOUT_CONFIG_PROPERTY = "timeout";
 
 	/**
 	 * 
@@ -145,6 +152,10 @@ public class HttpServletResourceAdaptor implements ResourceAdaptor,
 	 */
 	public void raConfigure(ConfigProperties arg0) {
 		name = (String) arg0.getProperty(NAME_CONFIG_PROPERTY).getValue();
+                String tm= (String)arg0.getProperty(TIMEOUT_CONFIG_PROPERTY).getValue();
+                timeout=Long.valueOf(tm).longValue();
+                
+                
 	}
 
 	/*
@@ -512,7 +523,7 @@ public class HttpServletResourceAdaptor implements ResourceAdaptor,
 						null, EventFlags.REQUEST_EVENT_UNREFERENCED_CALLBACK);
 				// block thread until event has been processed
 				// otherwise jboss web replies to the request
-				lock.wait(15000);
+				lock.wait(timeout);
 				// the event was unreferenced or 15s timeout, if the activity is
 				// the request then end it
 				if (session == null) {
