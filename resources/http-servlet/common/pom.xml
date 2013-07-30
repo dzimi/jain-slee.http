@@ -3,7 +3,7 @@
 	
 	<parent>
 		<artifactId>http-servlet-parent</artifactId>
-		<groupId>org.mobicents.resources</groupId>
+		<groupId>com.jtendo.org.mobicents.resources</groupId>
 		<version>2.8.0-SNAPSHOT</version>
 	</parent>
 	
