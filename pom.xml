@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.jtendo</groupId>
         <artifactId>jtendo-mobicents-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0.FINAL</version>
     </parent>
 
     <groupId>com.jtendo.org.mobicents.servers.jainslee.http</groupId>
